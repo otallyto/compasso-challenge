@@ -9,6 +9,8 @@ export interface ClientModel extends Document {
   nascimento: string
   idade: number
   cidade: string
+  createdAt: string
+  updatedAt: string
 }
 
 const ClientSchema = new dynamose.Schema({

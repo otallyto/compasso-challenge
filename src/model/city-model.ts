@@ -5,6 +5,8 @@ export interface CityModel extends Document {
   id: string
   nome: string
   estado: number
+  createdAt: string
+  updatedAt: string
 }
 
 const CitySchema = new dynamose.Schema({
@@ -20,7 +22,6 @@ const CitySchema = new dynamose.Schema({
     type: String,
     required: true
   }
-
 }, {
   saveUnknown: false,
   timestamps: true

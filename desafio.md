@@ -16,10 +16,10 @@ Nesta estapa esperamos que você construa o código que contemple as seguintes o
 - [x] Cadastrar cliente
 - [x] Consultar cidade pelo nome
 - [x] Consultar cidade pelo estado
-- [] Consultar cliente pelo nome
-- [] Consultar cliente pelo Id
-- [] Remover cliente
-- [] Alterar o nome do cliente
+- [x] Consultar cliente pelo nome
+- [x] Consultar cliente pelo Id
+- [x] Remover cliente
+- [x] Alterar o nome do cliente
 
 Considere o cadastro com dados básicos:
 

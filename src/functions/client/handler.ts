@@ -12,11 +12,16 @@ const client = async (event: any): Promise<HandlerResponse> => {
   let result = null
   const { httpMethod, body } = event
   const id = event.pathParameters ? event.pathParameters.id : null
+  const nome = event.queryStringParameters ? event.queryStringParameters.nome : null
 
   try {
     switch (httpMethod) {
       case 'GET':
-        result = await client.find(id)
+        if (id) {
+          result = await client.find(id)
+        } else if (nome) {
+          result = await client.findClientByName(nome)
+        }
         break
       case 'POST':
         result = await client.create(body)
