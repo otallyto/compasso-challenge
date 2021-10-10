@@ -5,6 +5,4 @@ export interface Client {
   nascimento: string
   idade: number
   cidade: string
-  createdAt: string
-  updatedAt: string
 }

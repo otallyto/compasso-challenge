@@ -1,6 +1,7 @@
 import 'source-map-support/register'
 import { middyfy } from '@libs/lambda'
 import { clientFactory } from '@factory/client-factory'
+import { HttpRequest } from 'src/protocols/httpMetods'
 
 export interface HandlerResponse {
   statusCode: number
@@ -16,20 +17,20 @@ const client = async (event: any): Promise<HandlerResponse> => {
 
   try {
     switch (httpMethod) {
-      case 'GET':
+      case HttpRequest.GET:
         if (id) {
           result = await client.find(id)
         } else if (nome) {
           result = await client.findClientByName(nome)
         }
         break
-      case 'POST':
+      case HttpRequest.POST:
         result = await client.create(body)
         break
-      case 'PUT':
+      case HttpRequest.PUT:
         result = await client.update(id, body)
         break
-      case 'DELETE':
+      case HttpRequest.DELETE:
         result = await client.delete(id)
         break
     }
