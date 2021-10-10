@@ -18,6 +18,10 @@ export class CityController implements Controller {
     return await this.model.scan('nome').eq(nome).exec()
   }
 
+  async getCityByState (estado: string): Promise<any> {
+    return await this.model.scan('estado').eq(estado).exec()
+  }
+
   async update (id: string, data: any): Promise<any> {
     const funcionario = await this.model.get(id)
     return await funcionario.model.update({ id: funcionario.id, ...data })

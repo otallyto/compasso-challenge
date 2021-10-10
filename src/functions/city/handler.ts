@@ -14,6 +14,8 @@ const city = async (event: APIGatewayEvent): Promise<HandlerResponse> => {
   const { httpMethod, body } = event
   const id = event.pathParameters ? event.pathParameters.id : null
   const nome = event.queryStringParameters ? event.queryStringParameters.nome : null
+  const estado = event.queryStringParameters ? event.queryStringParameters.estado : null
+
   try {
     switch (httpMethod) {
       case 'GET':
@@ -21,6 +23,8 @@ const city = async (event: APIGatewayEvent): Promise<HandlerResponse> => {
           result = await city.find(id)
         } else if (nome) {
           result = await city.getCityByName(nome)
+        } else if (estado) {
+          result = await city.getCityByState(estado)
         }
         break
       case 'POST':

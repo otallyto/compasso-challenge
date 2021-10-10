@@ -15,7 +15,7 @@ Nesta estapa esperamos que você construa o código que contemple as seguintes o
 - [x] Cadastrar cidade
 - [x] Cadastrar cliente
 - [x] Consultar cidade pelo nome
-- [] Consultar cidade pelo estado
+- [x] Consultar cidade pelo estado
 - [] Consultar cliente pelo nome
 - [] Consultar cliente pelo Id
 - [] Remover cliente
