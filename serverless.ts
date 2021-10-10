@@ -11,6 +11,12 @@ const serverlessConfiguration: AWS = {
       webpackConfig: './webpack.config.js',
       includeModules: true
     },
+    serverlessOffine: {
+      useChildProcess: true,
+      httpPort: 3003,
+      lambdaPort: 3004,
+      debug: true
+    },
     region: '${ self:provider.region}',
     stage: '${ self:provider.stage}',
     cityTable: '${self:service}-city-${self:provider.stage}',

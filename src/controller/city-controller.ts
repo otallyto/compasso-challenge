@@ -14,6 +14,10 @@ export class CityController implements Controller {
     return await this.model.get(id)
   }
 
+  async getCityByName (nome: string): Promise<any> {
+    return await this.model.scan('nome').eq(nome).exec()
+  }
+
   async update (id: string, data: any): Promise<any> {
     const funcionario = await this.model.get(id)
     return await funcionario.model.update({ id: funcionario.id, ...data })

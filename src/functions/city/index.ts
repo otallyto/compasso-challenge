@@ -6,6 +6,12 @@ export default {
     {
       http: {
         method: 'get',
+        path: 'city'
+      }
+    },
+    {
+      http: {
+        method: 'get',
         path: 'city/{id}'
       }
     },

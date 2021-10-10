@@ -1,22 +1,27 @@
 import 'source-map-support/register'
 import { middyfy } from '@libs/lambda'
 import { cityFactory } from '@factory/city-factory'
+import { APIGatewayEvent } from 'aws-lambda'
 
 export interface HandlerResponse {
   statusCode: number
   body: string
 }
 
-const city = async (event: any): Promise<HandlerResponse> => {
+const city = async (event: APIGatewayEvent): Promise<HandlerResponse> => {
   const city = cityFactory()
   let result = null
   const { httpMethod, body } = event
   const id = event.pathParameters ? event.pathParameters.id : null
-
+  const nome = event.queryStringParameters ? event.queryStringParameters.nome : null
   try {
     switch (httpMethod) {
       case 'GET':
-        result = await city.find(id)
+        if (id) {
+          result = await city.find(id)
+        } else if (nome) {
+          result = await city.getCityByName(nome)
+        }
         break
       case 'POST':
         result = await city.create(body)
