@@ -12,7 +12,8 @@ const serverlessConfiguration: AWS = {
     },
     region: '${ self:provider.region}',
     stage: '${ self:provider.stage}',
-    cityTable: '${self:service}-city-${self:provider.stage}'
+    cityTable: '${self:service}-city-${self:provider.stage}',
+    clientTable: '${self:service}-client-${self:provider.stage}'
   },
   plugins: ['serverless-webpack', 'serverless-offline'],
   provider: {
@@ -24,7 +25,8 @@ const serverlessConfiguration: AWS = {
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
-      CITY_TABLE: '${self:custom.cityTable}'
+      CITY_TABLE: '${self:custom.cityTable}',
+      CLIENT_TABLE: '${self:custom.clientTable}'
     },
     lambdaHashingVersion: '20201221',
     iamRoleStatements: [{

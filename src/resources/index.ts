@@ -1,5 +1,5 @@
-import { city } from './dynamo-db/city'
+import { city, client } from './dynamo-db'
 
 export const resources = {
-  city
+  city, client
 }
