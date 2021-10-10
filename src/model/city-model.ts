@@ -22,7 +22,7 @@ const CitySchema = new dynamose.Schema({
   }
 
 }, {
-  saveUnknown: true,
+  saveUnknown: false,
   timestamps: true
 })
 const createTable = process.env.NODE_ENV === 'test'

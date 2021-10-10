@@ -1,6 +1,7 @@
 import type { AWS } from '@serverless/typescript'
 import { resources } from './src/resources'
 import city from '@functions/city'
+import client from '@functions/client'
 
 const serverlessConfiguration: AWS = {
   service: 'compasso-challenge',
@@ -41,7 +42,7 @@ const serverlessConfiguration: AWS = {
       Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/*'
     }]
   },
-  functions: { city },
+  functions: { city, client },
   resources: {
     Resources: resources
   }

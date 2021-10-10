@@ -6,7 +6,7 @@ export interface ClientModel extends Document {
   nome: string
   sobrenome: string
   sexo: string
-  dataNascimento: string
+  nascimento: string
   idade: number
   cidade: string
 }
@@ -28,7 +28,7 @@ const ClientSchema = new dynamose.Schema({
     type: String,
     required: true
   },
-  dataNascimento: {
+  nascimento: {
     type: String,
     required: true
   },
@@ -41,7 +41,7 @@ const ClientSchema = new dynamose.Schema({
     required: true
   }
 }, {
-  saveUnknown: true,
+  saveUnknown: false,
   timestamps: true
 })
 const createTable = process.env.NODE_ENV === 'test'
