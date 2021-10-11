@@ -25,9 +25,9 @@ const serverlessConfiguration: AWS = {
       shouldStartNameWithService: true
     },
     environment: {
-      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
+      CITY_TABLE: '${self:custom.cityTable}',
       CLIENT_TABLE: '${self:custom.clientTable}',
-      CITY_TABLE: '${self:custom.cityTable}'
+      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
     },
     lambdaHashingVersion: '20201221',
     iamRoleStatements: [{

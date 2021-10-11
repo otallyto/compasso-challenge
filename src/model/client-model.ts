@@ -46,5 +46,5 @@ const ClientSchema = new dynamose.Schema({
   saveUnknown: false,
   timestamps: true
 })
-const createTable = process.env.STAGE === 'local'
+const createTable = process.env.IS_LOCAL === 'true'
 export const client = dynamose.model<ClientModel>(process.env.CLIENT_TABLE, ClientSchema, { create: createTable })

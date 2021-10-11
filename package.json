@@ -6,7 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test jest --passWithNoTests --runInBand",
     "coverage": "jest --passWithNoTests --coverage",
-    "offline": "STAGE=local sls offline",
+    "offline": "IS_LOCAL=true sls offline",
     "dev": "sls offline",
     "deploy": "sls deploy",
     "remove": "sls remove"

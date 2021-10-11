@@ -26,5 +26,5 @@ const CitySchema = new dynamose.Schema({
   saveUnknown: false,
   timestamps: true
 })
-const createTable = process.env.STAGE === 'local'
+const createTable = process.env.IS_LOCAL === 'true'
 export const city = dynamose.model<CityModel>(process.env.CITY_TABLE, CitySchema, { create: createTable })

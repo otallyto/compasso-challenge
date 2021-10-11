@@ -10,7 +10,6 @@ export interface HandlerResponse {
 
 const client = async (event: any): Promise<HandlerResponse> => {
   bootstrap()
-
   const client = clientFactory()
   let result = null
   const { httpMethod, body } = event
