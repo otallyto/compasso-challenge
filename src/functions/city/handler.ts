@@ -1,7 +1,7 @@
 import 'source-map-support/register'
 import { middyfy } from '@libs/lambda'
 import { cityFactory } from '@factory/city-factory'
-import { HttpRequest } from 'src/protocols/httpMetods'
+import { bootstrap } from 'src/util/dynamoose'
 
 export interface HandlerResponse {
   statusCode: number
@@ -9,6 +9,7 @@ export interface HandlerResponse {
 }
 
 const city = async (event: any): Promise<HandlerResponse> => {
+  bootstrap()
   const city = cityFactory()
   let result = null
   const { httpMethod, body } = event
@@ -18,7 +19,7 @@ const city = async (event: any): Promise<HandlerResponse> => {
 
   try {
     switch (httpMethod) {
-      case HttpRequest.GET:
+      case 'GET':
         if (id) {
           result = await city.find(id)
         } else if (nome) {
@@ -27,13 +28,13 @@ const city = async (event: any): Promise<HandlerResponse> => {
           result = await city.findCityByState(estado)
         }
         break
-      case HttpRequest.POST:
+      case 'POST':
         result = await city.create(body)
         break
-      case HttpRequest.PUT:
+      case 'PUT':
         result = await city.update(id, body)
         break
-      case HttpRequest.DELETE:
+      case 'DELETE':
         result = await city.delete(id)
         break
     }

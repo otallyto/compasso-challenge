@@ -1,7 +1,7 @@
 import 'source-map-support/register'
 import { middyfy } from '@libs/lambda'
 import { clientFactory } from '@factory/client-factory'
-import { HttpRequest } from 'src/protocols/httpMetods'
+import { bootstrap } from 'src/util/dynamoose'
 
 export interface HandlerResponse {
   statusCode: number
@@ -9,6 +9,8 @@ export interface HandlerResponse {
 }
 
 const client = async (event: any): Promise<HandlerResponse> => {
+  bootstrap()
+
   const client = clientFactory()
   let result = null
   const { httpMethod, body } = event
@@ -17,20 +19,20 @@ const client = async (event: any): Promise<HandlerResponse> => {
 
   try {
     switch (httpMethod) {
-      case HttpRequest.GET:
+      case 'GET':
         if (id) {
           result = await client.find(id)
         } else if (nome) {
           result = await client.findClientByName(nome)
         }
         break
-      case HttpRequest.POST:
+      case 'POST':
         result = await client.create(body)
         break
-      case HttpRequest.PUT:
+      case 'PUT':
         result = await client.update(id, body)
         break
-      case HttpRequest.DELETE:
+      case 'DELETE':
         result = await client.delete(id)
         break
     }

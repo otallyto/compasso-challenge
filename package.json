@@ -1,12 +1,12 @@
 {
-  "name": "serverless-challenge",
+  "name": "compasso-challenge",
   "version": "1.0.0",
-  "description": "Serverless aws-nodejs-typescript template",
+  "description": "A compasso api challenge",
   "main": "serverless.ts",
   "scripts": {
     "test": "NODE_ENV=test jest --passWithNoTests --runInBand",
     "coverage": "jest --passWithNoTests --coverage",
-    "offline": "sls offline --aws-profile live",
+    "offline": "IS_OFFLINE=true sls offline --aws-profile live",
     "deploy": "sls deploy --aws-profile live",
     "remove": "sls remove"
   },
@@ -37,6 +37,7 @@
     "jest": "^27.1.1",
     "json-schema-to-ts": "^1.5.0",
     "serverless": "^2.62.0",
+    "serverless-dynamodb-local": "^0.2.40",
     "serverless-offline": "^8.1.0",
     "serverless-webpack": "^5.3.5",
     "ts-jest": "^27.0.5",

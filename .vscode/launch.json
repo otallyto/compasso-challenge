@@ -20,7 +20,8 @@
             "protocol": "inspector",
             "runtimeExecutable": "node",
             "env": {
-                "SLS_DEBUG":"*"
+                "SLS_DEBUG":"*",
+                "IS_OFFLINE": true
             },
             "windows": {
               "program": "${workspaceRoot}\\node_modules\\serverless\\bin\\serverless"

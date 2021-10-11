@@ -1,4 +1,4 @@
-# Serverless Challenge
+# Compasso Challenge
 
 ## Prerequisites
 
@@ -18,8 +18,8 @@ v14.17.5
 Start with cloning this repo on your local machine:
 
 ```sh
-$ git clone https://github.com/otallyto/serverless-challenge.git
-$ cd serverless-challenge
+$ git clone https://github.com/otallyto/compasso-challenge.git
+$ cd compasso-challenge
 ```
 
 To install and set up the library, run:
@@ -35,6 +35,11 @@ $ yarn install
 ```
 
 ## Usage
+
+### Run database
+```sh
+$ docker run -d -p 8000:8000 amazon/dynamodb-local
+```
 
 ### Serving the app
 
@@ -53,54 +58,68 @@ $ npm test
 ```sh
 $ npm run deploy
 ```
+## Testing locally
 
-## Testing the deployed app
+### City
 
-- create a emplopyee in the database
-```sh
+Create a city in the database:
+```sh 
 curl --request POST \
-  --url https://6bb5a6l1n3.execute-api.us-east-1.amazonaws.com/dev/funcionario \
+  --url http://localhost:3000/dev/city \
   --header 'Content-Type: application/json' \
   --data '{
-	"nome": "Matheus",
-	"idade": 24,
-	"cargo": "Back-end Developer"
+	"nome": "Boa Vista",
+	"estado": "Roraima"
 }'
 ```
-
-- get the employee from the database
+- find city by name:
+```sh
+curl --request GET \
+  --url 'http://localhost:3000/dev/city?nome=Boa%20Vista'
+```
+- find a city by state:
 
 ```sh
 curl --request GET \
-  --url https://6bb5a6l1n3.execute-api.us-east-1.amazonaws.com/dev/funcionario/d543bb7e-2615-4a50-a4d0-2b1db19e6f76
+  --url 'http://localhost:3000/dev/city?estado=Roraima'
 ```
+### Client
 
-- update the employee in the database
-
+- create a client in the database:
 ```sh
-curl --request PUT \
-  --url https://6bb5a6l1n3.execute-api.us-east-1.amazonaws.com/dev/funcionario/d543bb7e-2615-4a50-a4d0-2b1db19e6f76 \
+curl --request POST \
+  --url http://localhost:3000/dev/client/ \
   --header 'Content-Type: application/json' \
   --data '{
-	"nome": "Matheus Silva",
-	"skills": ["Super Sono", "OSU"]
+	"nome": "Tállyto",
+	"sobrenome": "Rodrigues",
+	"sexo": "Masculino",
+	"idade": 25,
+	"nascimento": "06/04/1996",
+	"cidade": "Curitiba - PR"
 }'
 ```
-
-- delete the employee from the database
-
+- find client by name:
+```sh
+curl --request GET \
+  --url 'http://localhost:3000/dev/client?nome=Tállyto'
+```
+- update client:
+```sh
+curl --request PUT \
+  --url http://localhost:3000/dev/client/1 \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "nome": "Tállyto",
+    "sobrenome": "Sousa Rodrigues",
+    "sexo": "Masculino",
+    "idade": 25,
+    "nascimento": "06/04/1996",
+    "cidade": "Curitiba - PR"
+}'
+```
+- delete client:
 ```sh
 curl --request DELETE \
-  --url https://6bb5a6l1n3.execute-api.us-east-1.amazonaws.com/dev/funcionario/d543bb7e-2615-4a50-a4d0-2b1db19e6f76
+  --url http://localhost:3000/dev/client/1
 ```
-## Requisitos
-
-- [x] 1. Utilizar Clean Architecture
-- [x] 2. Seu desafio precisa estar versionado no Github, em um repositório público.
-- [x] 3. Documentação é primordial e vamos nos guiar por ela ;)
-- [x] 4. Um funcionário deve possuir como atributos : Id , Idade , Nome e Cargo<br/>
-- [x] 5. Salvar as informações necessárias em um banco de dados relacional ou não relacional de sua escolha dentro de uma infraestrutura AWS<br/>
-- [x] 6. Será necessário que a Lambda consiga consultar, deletar e atualizar um funcionário e que ele esteja acessível via internet.<br/>
-- [x] 7. Os recuros podem ser provisionados por serveless framework ou terraform.
-- [x] 8. Realizar testes unitário com JEST.
-
