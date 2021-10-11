@@ -4,8 +4,8 @@
   "description": "A compasso api challenge",
   "main": "serverless.ts",
   "scripts": {
-    "test": "NODE_ENV=test jest --passWithNoTests --runInBand",
-    "coverage": "jest --passWithNoTests --coverage",
+    "test": "NODE_ENV=test jest --passWithNoTests --runInBand --detectOpenHandles",
+    "coverage": "jest --passWithNoTests --coverage --detectOpenHandles",
     "offline": "IS_LOCAL=true sls offline",
     "dev": "sls offline",
     "deploy": "sls deploy",

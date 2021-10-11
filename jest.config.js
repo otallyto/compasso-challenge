@@ -11,6 +11,6 @@ module.exports = {
   },
   preset: '@shelf/jest-dynamodb',
   setupFiles: ['<rootDir>/src/config/setupTests.ts'],
-  collectCoverageFrom: ['<rootDir>/src/**/*.ts']
-
+  collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
+  modulePathIgnorePatterns: ['<rootDir>/lib/']
 }

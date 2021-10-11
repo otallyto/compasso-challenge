@@ -25,7 +25,7 @@ export class CityController implements Controller {
     return await this.model.scan('estado').eq(estado).exec()
   }
 
-  async update (id: string, data: Partial<City>): Promise<any> {
+  async update (id: string, data: Partial<City>): Promise<CityModel> {
     const city = await this.model.get(id)
     if (!city) {
       throw new Error('City not found')

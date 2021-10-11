@@ -4,7 +4,7 @@ import { Document } from 'dynamoose/dist/Document'
 export interface CityModel extends Document {
   id: string
   nome: string
-  estado: number
+  estado: string
   createdAt: string
   updatedAt: string
 }
@@ -27,4 +27,4 @@ const CitySchema = new dynamose.Schema({
   timestamps: true
 })
 const createTable = process.env.IS_LOCAL === 'true'
-export const city = dynamose.model<CityModel>(process.env.CITY_TABLE, CitySchema, { create: createTable })
+export const cityModel = dynamose.model<CityModel>(process.env.CITY_TABLE, CitySchema, { create: createTable })
