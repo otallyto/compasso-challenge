@@ -1,6 +1,5 @@
-import { cityModel } from '@model/city-model'
+import { cityFactory } from '@factory/city-factory'
 import { City } from 'src/protocols/city'
-import { CityController } from './city-controller'
 
 const city: City = {
   nome: 'any_name',
@@ -8,7 +7,7 @@ const city: City = {
 }
 
 describe('City Controller Tests', () => {
-  const cityController = new CityController(cityModel)
+  const cityController = cityFactory()
   it('Deve cadastrar uma cidade', async () => {
     const result = await cityController.create(city)
     expect(result).toHaveProperty('id')
